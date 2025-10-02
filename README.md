@@ -12,7 +12,7 @@ let y = <year>
     id = <sha7 of HEAD>
     marker = ".dirty" if `git status --porcelain` else ""
 in
-    f"{y}.{w}.{cw}" + f"-post{cb}.{id:11}{marker}" if cb > 0 else ""
+    f"{y}.{w}.{cw}" + f"-post{cb}.{id:11}{marker}" if (cb > 0 or marker) else ""
 ```
 
 ## Examples
@@ -25,10 +25,11 @@ in
 
 - Compliant SemVer version https://semver.org/#backusnaur-form-grammar-for-valid-semver-versions
 - Sorts by date and sequence of commits to `main` under PyPi/Maven/Semver comparison
-- Releases not from `main` or your trunk are immediately obvious because they aren't `+0` and are tagged with the commit
-- If a branch is rebased the `main` stem will change but the sequence will remain
+- Version sequence depends only on repo history, releases don't need to be tagged
 - The current date is not a factor; the only consideration is commit dates
+- Branched states are explicitly marked
 - Dirty states are explicitly marked
+- If a branch is rebased the `main` stem will change but the sequence will remain
 
 Note that due to https://github.com/moby/moby/issues/16304 /
 https://github.com/opencontainers/distribution-spec/issues/154, the `+<build>`
