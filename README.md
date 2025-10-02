@@ -53,7 +53,7 @@ jobs:
           fetch-depth: 0
 
       - id: monoversion
-        uses: arrdem/monoversion@2025.40.2
+        uses: arrdem/monoversion@2025.40.5
         with:
           trunk: 'origin/your-custom-trunk-branch-name'
 
