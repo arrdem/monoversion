@@ -1,0 +1,23 @@
+---
+name: monoversion
+description: Compute the monoversion and make it available as an output
+
+inputs:
+ trunk:
+   required: false
+   type: string
+   default: 'origin/main'
+
+outputs:
+  monoversion:
+    description: "The monoversion of the checked out commit"
+    value: ${{ steps.monoversion.outputs.monoversion }}
+
+runs:
+  using: composite
+  steps:
+    - name: Monoversion
+      id: monoversion
+      run: |
+        echo "monoversion=$(python3 ./monoversion.py --end ${{ inputs.trunk }})" >> $GITHUB_OUTPUT
+      shell: bash

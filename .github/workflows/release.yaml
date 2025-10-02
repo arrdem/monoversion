@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        
+      - id: monoversion
+        uses: arrdem/monoversion@main
+
+      - name: Create tag
+        run: |
+          git tag ${{ steps.monoversion.outputs.monoversion }}
+          git push --tags
