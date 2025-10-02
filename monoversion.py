@@ -67,7 +67,7 @@ def main():
   except CalledProcessError:
     suffix = ".dirty"
 
-  tail = f"-{branch_commits}.{start[:11]}{suffix}" if branch_commits else ""
+  tail = f"-post{branch_commits}.{start[:11]}{suffix}" if branch_commits else ""
 
   print(f"{monday_date.year}.{monday_date.strftime('%V')}.{week_commits}{tail}")
 

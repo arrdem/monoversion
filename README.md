@@ -12,14 +12,14 @@ let y = <year>
     id = <sha7 of HEAD>
     marker = ".dirty" if `git status --porcelain` else ""
 in
-    f"{y}.{w}.{cw}" + f"-{cb}.{id:11}{marker}" if cb > 0 else ""
+    f"{y}.{w}.{cw}" + f"-post{cb}.{id:11}{marker}" if cb > 0 else ""
 ```
 
 ## Examples
 
 - `2025.23.1` The 23rd week of 2025, 1st commit of the week.
-- `2025.28.52-1.fad96ae6fa8` The 28th week of 2025, 52 commits into the week, one commit into a branch.
-- `2025.28.46-0.9aae26a05be.dirty` The 28th week of 2025, 46 commits since the first commit of the week, +0 (on main), last commit `9aae26a05be`, dirty.
+- `2025.28.52-post1.fad96ae6fa8` The 28th week of 2025, 52 commits into the week, one commit into a branch.
+- `2025.28.46-post0.9aae26a05be.dirty` The 28th week of 2025, 46 commits since the first commit of the week, +0 (on main), last commit `9aae26a05be`, dirty.
 
 ## Version format properties
 
@@ -29,6 +29,11 @@ in
 - If a branch is rebased the `main` stem will change but the sequence will remain
 - The current date is not a factor; the only consideration is commit dates
 - Dirty states are explicitly marked
+
+Note that due to https://github.com/moby/moby/issues/16304 /
+https://github.com/opencontainers/distribution-spec/issues/154, the `+<build>`
+syntax which would be more appropriate for attaching the build commit is avoided
+so that monovers are usable for Docker artifacts.
 
 ## Usage
 
