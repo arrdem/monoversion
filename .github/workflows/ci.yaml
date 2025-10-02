@@ -16,5 +16,5 @@ jobs:
           ls -lah .
 
       - id: monoversion
-        uses: arrdem/monoversion@main
+        uses: ./
         with: {}

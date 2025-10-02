@@ -14,7 +14,8 @@ jobs:
           fetch-depth: 0
         
       - id: monoversion
-        uses: arrdem/monoversion@main
+        uses: ./
+        with: {}
 
       - name: Create tag
         run: |
