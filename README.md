@@ -37,7 +37,24 @@ the monoversion for a cloned git repo, and a Github Actions `action.yaml` which
 wraps it up for ease of use.
 
 ```yaml
+...
 
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - id: monoversion
+        uses: arrdem/monoversion@2025.40.2
+        with:
+          trunk: 'origin/your-custom-trunk-branch-name'
+
+      - run: |
+        # Run your release usage consuming the monoversion
+        ./release.sh ${{ steps.monoversion.outputs.monoversion }}
 ```
 
 ## Credits
