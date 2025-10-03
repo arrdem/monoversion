@@ -19,5 +19,5 @@ runs:
     - name: Monoversion
       id: monoversion
       run: |
-        echo "monoversion=$(python3 ./monoversion.py --end ${{ inputs.trunk }})" >> $GITHUB_OUTPUT
+        echo "monoversion=$(python3 ${{ github.action_path }}/monoversion.py --end ${{ inputs.trunk }})" >> $GITHUB_OUTPUT
       shell: bash
